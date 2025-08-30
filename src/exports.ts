@@ -214,7 +214,6 @@ export const checkForCompletedTriangle = (edge: Edge, owner: string): EdgeListAr
 
     // if it's all of them, game is lost
     if (ownedEdgesCounter === 3) return edges
-
   }
 
   // indicate that there is no unambiguously owned triangle
