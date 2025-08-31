@@ -1,18 +1,28 @@
 import kaplay from "kaplay";
 import type { Edge, EdgeListArr, EdgeListObj } from "./types"
+import { getFips } from "crypto";
 
 //
 // k
 //
 
-export const k = kaplay()
+export const k = kaplay({
+  width: 320,
+  height: 640,
+  letterbox: true,
+  crisp: false,
+  scale: 8,
+  maxFPS: 15,
+  global: false,
+})
 
 //
 // misc constants
 //
 
-const radius = 300
-const center = k.vec2(radius * 1.5)
+const radius = 140
+const center = k.vec2(160, 220)
+
 export const lineCol = {
   neutral: k.rgb(100, 100, 100),
   human: k.rgb(100, 100, 200),
@@ -25,18 +35,25 @@ const textCol = {
   bullet: k.rgb(250, 250, 125),
 }
 
-export const helpText = `
-[bl]1[/bl]. Take turn with the computer to color edges.
-[bl]2[/bl]. Your color is [b]blue[/b], computer uses [r]red[/r].
-[bl]3[/bl]. Avoid coloring a triangle completely in
-   your color, because the first to complete
-   a triangle, [bl]LOOSES[/bl] the game!`
+export const helpText = {
+  content: `
+    Take turn with the computer
+    to color edges. Do so by
+    clicking on an edge.
 
-export const helpTextStyles = {
-  "bl": {color: textCol.bullet},
-  "r": { color: textCol.computer},
-  "b": { color: textCol.human},
-  "n": { color: pointCol},
+    Your color is [b]blue[/b],
+    computer uses [r]red[/r].
+
+    Who creates a triangle
+    somewhere on the grid
+    in their owned color
+    [bl]LOOSES[/bl] the game!`,
+  styles: {
+    "bl": {color: textCol.bullet},
+    "r": { color: textCol.computer},
+    "b": { color: textCol.human},
+    "n": { color: pointCol},
+  },
 }
 
 //

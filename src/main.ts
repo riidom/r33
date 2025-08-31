@@ -1,5 +1,5 @@
 import {
-  k, lineCol, pointCol, helpText, helpTextStyles,
+  k, lineCol, pointCol, helpText,
   getRandomNeutralEdge, resetEdges,
   points, edges, checkForCompletedTriangle,
 } from "./exports"
@@ -12,18 +12,20 @@ k.scene("game", () => {
   k.setBackground(30,30,30)
 
   const turnIndicator = k.add([
-    k.text("turn: " + currentTurn),
-    k.pos(points[4].x, points[4].y / 2 - 12),
+    k.text("turn: " + currentTurn, {
+      size: 24
+    }),
+    k.pos(points[4].x - 16, points[4].y / 2 - 12),
     "turnIndicator",
   ])
 
   k.add([
-    k.text(helpText, {
-      size: 24,
-      lineSpacing: 8,
-      styles: helpTextStyles,
+    k.text(helpText.content, {
+      size: 16,
+      lineSpacing: 2,
+      styles: helpText.styles,
     }),
-    k.pos(100, 760),
+    k.pos(0, 380),
   ])
 
   k.onDraw(() => {
