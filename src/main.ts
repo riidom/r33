@@ -69,6 +69,7 @@ k.scene("game", () => {
         const e2 = getRandomNeutralEdge()
         e2.owner = "computer"
         const t2 = checkForCompletedTriangle(e2, "computer")
+        // const t2 = t1 // computer fails faster
         if (t2) {
           for (const e of t2) e.contributedToLoss = true
           looser = "computer"
@@ -78,13 +79,12 @@ k.scene("game", () => {
             k.go("game")
           })
         }
-      } else {
-        k.wait(0.5, () => {
+      }
+      if (!t1) k.wait(0.5, () => {
           // pass back to human
           currentTurn = "human"
           turnIndicator.text = "turn: " + currentTurn
         })
-      }
     })
   })
 
