@@ -15,7 +15,7 @@ k.scene("game", () => {
     k.text("turn: " + currentTurn, {
       size: 24
     }),
-    k.pos(points[4].x - 16, points[4].y / 2 - 12),
+    k.pos(points[4].x - 16, points[4].y / 2 - 36),
     "turnIndicator",
   ])
 
@@ -60,7 +60,6 @@ k.scene("game", () => {
   })
 
   k.on("computerTurn", "turnIndicator", () => {
-    if (looser) return
     k.wait(1, () => {
       const e1 = getRandomNeutralEdge()
       e1.owner = "computer"
@@ -75,14 +74,14 @@ k.scene("game", () => {
         if (t2) {
           for (const e of t2) e.contributedToLoss = true
           looser = "computer"
-          turnIndicator.text = looser + " has lost!"
-          k.wait(2, () => {
+          turnIndicator.text = looser + "\nhas lost!"
+          k.wait(3, () => {
             resetEdges()
             k.go("game")
           })
         }
       }
-      if (!t1) k.wait(0.5, () => {
+      if (!looser) k.wait(0.5, () => {
           // pass back to human
           currentTurn = "human"
           turnIndicator.text = "turn: " + currentTurn
@@ -112,12 +111,11 @@ k.scene("game", () => {
           if (t) {
             for (const e of t) e.contributedToLoss = true
             looser = "human"
-            turnIndicator.text = looser + " has lost!"
-            k.wait(2, () => {
+            turnIndicator.text = looser + "\nhas lost!"
+            k.wait(3, () => {
               resetEdges()
               k.go("game")
             })
-
           } else {
             // pass back to computer
             currentTurn = "computer"
