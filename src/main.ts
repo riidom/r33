@@ -130,5 +130,3 @@ k.scene("game", () => {
 })
 
 k.go("game")
-
-// TODO: set up kaplay scenes (intro/menu - game - endscreen)
