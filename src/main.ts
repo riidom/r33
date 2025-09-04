@@ -96,7 +96,7 @@ k.scene("game", () => {
     // invisible circle at mouse pos for collision test
     const m = new k.Circle(k.mousePos(), 12)
 
-    Object.keys(edges).forEach(edgeKey => {
+    for (const edgeKey of Object.keys(edges)) {
       const e = edges[edgeKey]
 
       // invisible line at each real line for collision test
@@ -125,8 +125,9 @@ k.scene("game", () => {
             k.trigger("computerTurn", "turnIndicator")
           }
         }
+        break // clicking a "crossing" should still select only one edge
       }
-    })
+    }
   })
 })
 
