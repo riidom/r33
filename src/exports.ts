@@ -1,6 +1,5 @@
 import kaplay from "kaplay";
 import type { Edge, EdgeListArr, EdgeListObj } from "./types"
-import { getFips } from "crypto";
 
 //
 // k
